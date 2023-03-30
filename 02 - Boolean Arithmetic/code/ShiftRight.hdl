@@ -1,0 +1,14 @@
+// This file is part of nand2tetris, as taught in The Hebrew University,
+// and was written by Aviv Yaish, and is published under the Creative 
+// Common Attribution-NonCommercial-ShareAlike 3.0 Unported License 
+// https://creativecommons.org/licenses/by-nc-sa/3.0/
+
+CHIP ShiftRight{
+	IN in[16];
+    OUT out[16];
+     
+    PARTS:
+    Add16(a[15]=in[15], a[14]=in[15], a[13]=in[14], a[12]=in[13], a[11]=in[12], a[10]=in[11], a[9]=in[10],
+          a[8]=in[9],a[7]=in[8], a[6]=in[7], a[5]=in[6], a[4]=in[5], a[3]=in[4], a[2]=in[3], a[1]=in[2], a[0]=in[1],
+          b[0..15]=false, out=out);
+}
