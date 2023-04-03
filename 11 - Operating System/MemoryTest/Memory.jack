@@ -1,0 +1,111 @@
+// This file is part of nand2tetris, as taught in The Hebrew University, and
+// was written by Aviv Yaish. It is an extension to the specifications given
+// [here](https://www.nand2tetris.org) (Shimon Schocken and Noam Nisan, 2017),
+// as allowed by the Creative Common Attribution-NonCommercial-ShareAlike 3.0
+// Unported [License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
+// File name: projects/12/Memory.jack
+
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */ 
+class Memory {
+
+    static Array start_array, RAM_array, freeList;
+
+    /** Initializes the class. */
+    function void init() {
+        let RAM_array = 0;
+        let freeList = 2048;
+        let start_array = 2048;
+        let freeList[0] = 0;
+        let freeList[1] = 14335;
+        return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address){
+        if ((address < 32766) & ~(address < 0)){
+            return RAM_array[address];
+        }
+        return 0;
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+        if ((address < 32766) & ~(address < 0)){
+            let RAM_array[address] = value;}
+        return;
+    }
+
+
+
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. Assume size > 0. */
+    function int alloc(int size) {
+        var Array addr_array;
+        var int temp;
+        var boolean is_free;
+        var Array helper_array;
+        let helper_array = freeList;
+        let is_free = false;
+        let temp = size + 2;
+
+        while (~(helper_array[0] = 0)){
+            if (helper_array[1] > temp - 1){
+                let helper_array[1]= helper_array[1] - temp;
+                let helper_array = helper_array + temp;
+                let helper_array[1] = temp;
+                let helper_array[0] = 0;
+                let is_free = true;
+                return helper_array;}
+            let helper_array = helper_array[0];
+        }
+
+        if (is_free){
+            return helper_array;}
+        else{
+            let helper_array = -1;
+        }
+
+        if ((start_array < 14335 - temp) & (~(is_free))){
+            let addr_array = start_array + 2;
+            let addr_array[0] = 0;
+            let addr_array[1] = size;
+            let start_array[1] = start_array + size;
+            let start_array = start_array + temp;
+            return addr_array;
+            }
+
+        return -1;
+
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array o) {
+        var int temp;
+        let temp = o - 2;
+        let RAM_array[start_array] = temp;
+        let start_array = temp;
+        return;
+       }
+
+    /** Returns the maximal element contained in the given Array/object. 
+     *  Assume inputs are initialized and contain at least one element. */
+    function int max(Array o){
+        var int i, max_value;
+        if (o[-1] > i)
+        {
+            let max_value = o[0];
+            while (~(i = o[-1])){
+                let max_value = Math.max(o[i], max_value);
+                let i = i + 1;
+            }
+            return max_value;
+        }
+        return -1;
+    }
+}
