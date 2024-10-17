@@ -1,6 +1,6 @@
 # Nand2tetris
 **Description:**<br />
-Nand2tetris is a project-based course that teaches you how to build a modern computer system, from the ground up, starting with basic logic gates and culminating in writing your own software applications.
+Nand2tetris is a project-based course that guides you through the process of building a modern computer system from the ground up. The project begins with constructing basic logic gates and finishes with developing your own software applications that run on the system you've created.
 
 **Files:**
 - The program contains 11 folders for every stage of building the computer.
