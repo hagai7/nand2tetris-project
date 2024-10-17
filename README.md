@@ -4,7 +4,7 @@ Nand2tetris is a project-based course that guides you through the process of bui
 
 **Files:**
 - The program contains 11 folders for every stage of building the computer.
-- The files are wrtiten in HDL, Assembly and Python.
+- The files are writen in HDL, Assembly and Python.
 - Each folder includes several tests that can be run through external simulators.
 
 
