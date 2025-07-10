@@ -1,6 +1,6 @@
 # **Nand2Tetris**
 ## **Description:**
-The Nand2Tetris project implements a computer system from the ground up - starting with basic logic gates and ending with a simple operating system and programs. Based on the "From Nand to Tetris" course, it covers hardware simulation, assembler development, virtual machine implementation, and compiler design.
+The Nand2Tetris project implements a computer system from the ground up, starting with basic logic gates and ending with a simple operating system and programs. Based on the "From Nand to Tetris" course, it covers hardware simulation, assembler development, virtual machine implementation, and compiler design.
 
 ## **Prerequisites:**
 - Java (JDK 8 or higher)
